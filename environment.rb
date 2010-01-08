@@ -1,0 +1,10 @@
+ActiveSupport::Dependencies.load_once_paths.delete(File.expand_path(File.dirname(__FILE__))+'/lib')
+ActiveSupport::Dependencies.load_once_paths.delete(File.expand_path(File.dirname(__FILE__))+'/lib/ponteggio')
+ActiveSupport::Dependencies.load_once_paths.delete(File.expand_path(File.dirname(__FILE__)))
+ActiveSupport::Dependencies.load_once_paths.delete(File.expand_path(File.dirname(__FILE__))+'/app/helpers/ponteggio')
+
+ActionController::Base.send(:extend, Ponteggio::ControllerScaffold)
+ActionView::Base.send(:include, Ponteggio::PageHelper)
+ActionView::Base.send(:include, Ponteggio::IndexHelper)
+ActionView::Base.send(:include, Ponteggio::ValueHelper)
+ActionView::Base.send(:include, Ponteggio::FormHelper)
