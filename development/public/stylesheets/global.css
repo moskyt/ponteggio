@@ -1,0 +1,10 @@
+html {
+  color: black;
+  font-size: 11px;
+  font-family: Verdana, sans-serif;
+}
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: blue;
+}
