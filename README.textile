@@ -1,0 +1,27 @@
+This is the plugin. It is updated from *ponteggio-development* playground on every numbered version.
+
+---
+
+Ponteggio is a plugin for easy and customizable scaffolding. It is not a scaffold generator and it is not a complete CRUD-management system (or, better, does not *have* to be). You can easily create the seven CRUD methods and the respective views:
+
+bc.. controller SomeObjectController < ApplicationController
+
+	ponteggio SomeObject, :crud
+
+end
+
+p. And that's it! Sometimes, you want to redefine the column kind (maybe it cannot be guessed from the schema and reflections), throw in sorting (using _SearchLogic_) or change _has_many_ association view from comma-separated to multi-line.
+
+bc.. controller SomeObjectController < ApplicationController
+
+	ponteggio SomeObject, :crud
+	
+	column :article_body, :kind => :wysiwyg
+	column :title, :sortable => true
+	column :watchers, :list => :long
+
+end
+
+p. Easy!
+
+The best thing is that you needn't to stick to this, but you can just reuse _some_ parts of Ponteggio.
