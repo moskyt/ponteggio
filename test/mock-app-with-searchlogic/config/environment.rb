@@ -14,4 +14,6 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
   
   config.gem 'searchlogic'
+  config.gem 'shoulda'
+  config.gem 'factory_girl'
 end

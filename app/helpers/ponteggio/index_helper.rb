@@ -10,7 +10,7 @@ module Ponteggio
           tag(:col, :width => '70')
         end + 
         index_table_header(model_class, index_column_set) +
-        content_tag(:tbody) do
+        content_tag(:tbody, :class => 'index-records') do
           record_set.map do |record|
             content_tag(:tr, :class => "index-table-row-#{cycle('odd', 'even')}") do
               index_column_set.map do |column|
