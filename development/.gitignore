@@ -1,5 +1,0 @@
-db/*.sqlite3
-log/*.log
-tmp/**/*
-db/data.yml
-mkmf.log

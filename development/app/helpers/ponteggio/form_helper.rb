@@ -1,1 +1,0 @@
-../../../../app/helpers/ponteggio/form_helper.rb

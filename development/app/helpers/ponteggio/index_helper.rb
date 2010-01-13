@@ -1,1 +1,0 @@
-../../../../app/helpers/ponteggio/index_helper.rb
