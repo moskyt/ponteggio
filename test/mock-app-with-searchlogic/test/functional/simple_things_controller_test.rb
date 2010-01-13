@@ -34,7 +34,8 @@ class SimpleThingsControllerTest < ActionController::TestCase
           assert_select "body > table.index-table > tbody.index-records > tr", :count => 100
         end
       end
-      
+      should "have new-link at the bottom" do
+      end
     
     end
     
