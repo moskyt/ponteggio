@@ -31,6 +31,10 @@ module Ponteggio
       @items_per_page = n
     end
       
+    # extract the columns from the options heap,
+    # add guessed type
+    # and create an array of column-hashes
+    # according to the list
     def map_column_set(model_class, column_list)
       column_list.map do |key|
         col = {:key => key}.merge((@columns || {})[key] || {})
@@ -72,13 +76,14 @@ module Ponteggio
       end
     end
   
+    # define a column
     def column(symbol, options)
       @columns ||= {}
       @columns[symbol] = options
     end
                  
   	# generator for scaffolding; used for all methods and for :create/:update on models without single table inheritance
-    def generic_scaffold(model_class, *method_set) 
+    def ponteggio(model_class, *method_set) 
               
       @all_columns = []
       model_class.column_names.each do |key|
@@ -91,7 +96,9 @@ module Ponteggio
           end
         end
       end
-      @all_columns -= [:created_at, :updated_at]
+      # do not display the id and the timestamps by default
+      # FIXME : should use some_primary_key instead of id
+      @all_columns -= [:id, :created_at, :updated_at]
               
       #pagination
       define_method :get_items_per_page do

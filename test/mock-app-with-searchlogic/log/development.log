@@ -1,0 +1,472 @@
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:20:42) [GET]
+
+ActiveRecord::StatementInvalid (Could not find table 'simple_things'):
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:84:in `ponteggio'
+  app/controllers/simple_things_controller.rb:3
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (35.5ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateSimpleThings (20100113061725)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCREATE TABLE "simple_things" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "timestamp" datetime, "timeref" time, "dateref" date, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100113061725')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("simple_things")[0m
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:23:53) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+NoMethodError (undefined method `search' for #<Class:0x1030cd5d8>):
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:117:in `index'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.7ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:25:01) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+NoMethodError (undefined method `is_enumeration?' for #<Class:0x102e151b0>):
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/conditions.rb:88:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/association_conditions.rb:19:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/association_ordering.rb:27:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/ordering.rb:30:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/or_conditions.rb:24:in `method_missing'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:67:in `map_column_set'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:35:in `map'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:35:in `map_column_set'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:136:in `index'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.6ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:26:41) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+NoMethodError (undefined method `is_enumeration?' for #<Class:0x102e0cee8>):
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/conditions.rb:88:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/association_conditions.rb:19:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/association_ordering.rb:27:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/ordering.rb:30:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/or_conditions.rb:24:in `method_missing'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:67:in `map_column_set'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:35:in `map'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:35:in `map_column_set'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:136:in `index'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.0ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:26:42) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+NoMethodError (undefined method `is_enumeration?' for #<Class:0x1034a6038>):
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/conditions.rb:88:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/association_conditions.rb:19:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/association_ordering.rb:27:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/ordering.rb:30:in `method_missing'
+  searchlogic (2.3.9) lib/searchlogic/named_scopes/or_conditions.rb:24:in `method_missing'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:67:in `map_column_set'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:35:in `map'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:35:in `map_column_set'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:136:in `index'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:28:44) [GET]
+  [4;36;1mSimpleThing Load (0.2ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 122ms (View: 5, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:29:42) [GET]
+  [4;35;1mSimpleThing Load (0.2ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:29:53) [GET]
+  [4;36;1mSimpleThing Load (0.2ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 76ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:29:57) [GET]
+  [4;35;1mSimpleThing Load (0.2ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:30:02) [GET]
+  [4;36;1mSimpleThing Load (0.2ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:30:03) [GET]
+  [4;35;1mSimpleThing Load (0.2ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:30:07) [GET]
+  [4;36;1mSimpleThing Load (0.2ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:30:12) [GET]
+  [4;35;1mSimpleThing Load (0.2ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:30:33) [GET]
+  [4;36;1mSimpleThing Load (0.2ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:32:53) [GET]
+  [4;35;1mSimpleThing Load (0.2ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#new (for 127.0.0.1 at 2010-01-13 07:32:56) [GET]
+Rendering template within layouts/default
+Completed in 167ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things/new]
+
+
+Processing SimpleThingsController#new (for 127.0.0.1 at 2010-01-13 07:34:21) [GET]
+Rendering template within layouts/default
+Completed in 148ms (View: 5, DB: 0) | 200 OK [http://localhost/simple_things/new]
+
+
+Processing SimpleThingsController#new (for 127.0.0.1 at 2010-01-13 07:34:53) [GET]
+Rendering template within layouts/default
+Completed in 25ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things/new]
+
+
+Processing SimpleThingsController#create (for 127.0.0.1 at 2010-01-13 07:35:01) [POST]
+  Parameters: {"simple_thing"=>{"timeref(4i)"=>"06", "timestamp(2i)"=>"1", "timestamp(3i)"=>"13", "timestamp(4i)"=>"06", "body"=>"pupuuuu", "title"=>"mimiiii", "timestamp(5i)"=>"34", "dateref(1i)"=>"2010", "dateref(2i)"=>"1", "timeref(5i)"=>"34", "timeref(1i)"=>"2010", "dateref(3i)"=>"13", "timeref(2i)"=>"1", "timestamp(1i)"=>"2010", "timeref(3i)"=>"13"}, "commit"=>".submit", "authenticity_token"=>"RdnXrap9OGi2XWtSgHrEenZ3r8d5ET3MyGlD4fIfnG0="}
+  [4;36;1mSimpleThing Create (0.5ms)[0m   [0;1mINSERT INTO "simple_things" ("created_at", "title", "body", "timestamp", "updated_at", "dateref", "timeref") VALUES('2010-01-13 06:35:01', 'mimiiii', 'pupuuuu', '2010-01-13 06:34:00', '2010-01-13 06:35:01', '2010-01-13', '2010-01-13 06:34:00')[0m
+Redirected to http://localhost:7777/simple_things
+Completed in 10ms (DB: 0) | 302 Found [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:35:01) [GET]
+  [4;35;1mSimpleThing Load (0.6ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 21ms (View: 1, DB: 1) | 200 OK [http://localhost/simple_things]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:35:01) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/zoom.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:35:01) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/page_edit.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:35:01) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/cancel.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing SimpleThingsController#destroy (for 127.0.0.1 at 2010-01-13 07:35:24) [DELETE]
+  Parameters: {"authenticity_token"=>"RdnXrap9OGi2XWtSgHrEenZ3r8d5ET3MyGlD4fIfnG0=", "id"=>"1"}
+  [4;36;1mSimpleThing Load (0.4ms)[0m   [0;1mSELECT * FROM "simple_things" WHERE ("simple_things"."id" = 1) [0m
+  [4;35;1mSimpleThing Destroy (0.3ms)[0m   [0mDELETE FROM "simple_things" WHERE "id" = 1[0m
+Redirected to http://localhost:7777/simple_things
+Completed in 7ms (DB: 1) | 302 Found [http://localhost/simple_things/1]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:35:24) [GET]
+  [4;36;1mSimpleThing Load (0.2ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 9ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#new (for 127.0.0.1 at 2010-01-13 07:35:26) [GET]
+Rendering template within layouts/default
+Completed in 26ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things/new]
+
+
+Processing SimpleThingsController#create (for 127.0.0.1 at 2010-01-13 07:35:35) [POST]
+  Parameters: {"simple_thing"=>{"timeref(4i)"=>"06", "timestamp(2i)"=>"1", "timestamp(3i)"=>"13", "timestamp(4i)"=>"06", "body"=>"kakvaaaa", "title"=>"bebeeee", "timestamp(5i)"=>"35", "dateref(1i)"=>"2010", "dateref(2i)"=>"1", "timeref(5i)"=>"35", "timeref(1i)"=>"2010", "dateref(3i)"=>"13", "timeref(2i)"=>"1", "timestamp(1i)"=>"2010", "timeref(3i)"=>"13"}, "commit"=>".submit", "authenticity_token"=>"RdnXrap9OGi2XWtSgHrEenZ3r8d5ET3MyGlD4fIfnG0="}
+  [4;35;1mSimpleThing Create (0.5ms)[0m   [0mINSERT INTO "simple_things" ("created_at", "title", "body", "timestamp", "updated_at", "dateref", "timeref") VALUES('2010-01-13 06:35:35', 'bebeeee', 'kakvaaaa', '2010-01-13 06:35:00', '2010-01-13 06:35:35', '2010-01-13', '2010-01-13 06:35:00')[0m
+Redirected to http://localhost:7777/simple_things
+Completed in 9ms (DB: 0) | 302 Found [http://localhost/simple_things]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:35:35) [GET]
+  [4;36;1mSimpleThing Load (0.5ms)[0m   [0;1mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 24ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:35:35) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/zoom.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:35:35) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/page_edit.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:35:35) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/cancel.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing SimpleThingsController#show (for 127.0.0.1 at 2010-01-13 07:35:39) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mSimpleThing Load (0.3ms)[0m   [0mSELECT * FROM "simple_things" WHERE ("simple_things"."id" = 2) [0m
+
+NoMethodError (undefined method `show_table_for' for #<ActionView::Base:0x103099a30>):
+  ./../../ponteggio/app/helpers/ponteggio/page_helper.rb:23:in `show_page_for'
+  ./../../ponteggio/lib/ponteggio/controller_scaffold.rb:149:in `show'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.4ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SimpleThingsController#show (for 127.0.0.1 at 2010-01-13 07:36:51) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mSimpleThing Load (0.4ms)[0m   [0;1mSELECT * FROM "simple_things" WHERE ("simple_things"."id" = 2) [0m
+Rendering template within layouts/default
+Completed in 66ms (View: 5, DB: 0) | 200 OK [http://localhost/simple_things/2]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:36:51) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/page_edit.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing SimpleThingsController#show (for 127.0.0.1 at 2010-01-13 07:37:11) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mSimpleThing Load (0.4ms)[0m   [0mSELECT * FROM "simple_things" WHERE ("simple_things"."id" = 2) [0m
+Rendering template within layouts/default
+Completed in 10ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things/2]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-13 07:37:11) [GET]
+
+ActionController::RoutingError (No route matches "/images/ponteggio/page_edit.png" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing SimpleThingsController#show (for 127.0.0.1 at 2010-01-13 07:37:58) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mSimpleThing Load (0.4ms)[0m   [0;1mSELECT * FROM "simple_things" WHERE ("simple_things"."id" = 2) [0m
+Rendering template within layouts/default
+Completed in 10ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things/2]
+
+
+Processing SimpleThingsController#index (for 127.0.0.1 at 2010-01-13 07:38:13) [GET]
+  [4;35;1mSimpleThing Load (0.4ms)[0m   [0mSELECT * FROM "simple_things" [0m
+Rendering template within layouts/default
+Completed in 20ms (View: 1, DB: 0) | 200 OK [http://localhost/simple_things]
