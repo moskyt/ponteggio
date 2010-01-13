@@ -1,4 +1,4 @@
-This is the plugin. It is updated from *ponteggio-development* playground on every numbered version.
+This is the plugin. It contains _development_ Rails app to play around with things without need for restarting the framework. Mock app(s) for testing are baked in, too.
 
 ---
 
