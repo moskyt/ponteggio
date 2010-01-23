@@ -43,4 +43,13 @@ ActiveRecord::Schema.define do
     t.references :validatee
     t.string     :string
   end
+  
+  create_table :sortables, :force => true do |t|
+  end
+
+  create_table :sortable_translations, :force => true do |t|
+    t.string     :locale
+    t.references :sortable
+    t.string     :title
+  end
 end

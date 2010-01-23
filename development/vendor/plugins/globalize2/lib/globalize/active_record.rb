@@ -65,22 +65,24 @@ module Globalize
           { :include => :translations, :conditions => [conditions.join(' AND '), locale] }
         }
 
-        attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
-
-        locale_list = translation_class.scoped(:select => 'DISTINCT locale').map(&:locale) rescue ['en']
-        locale_list.each do |lang_code|
-          self.has_many :"#{self.name.underscore}_translations_#{lang_code}", 
-            :class_name => "#{self.name}::Translation",
-            :conditions => "#{self.name.underscore}_translations.locale = '#{lang_code}'"
+        [(options[:extensions] || [])].flatten.each do |sym|
+          send(sym)
         end
 
+        attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
+      end
+            
+      def create_sorting_scopes
         self.translated_attribute_names.each do |key|
-          field = "#{self.name.underscore}_translations.#{key}"
-          self.named_scope :"ascend_by_#{key}", lambda{ { :order => "#{field} ASC", :joins => :"#{self.name.underscore}_translations_#{I18n.locale}" } }
-          self.named_scope :"descend_by_#{key}", lambda{ { :order => "#{field} DESC", :joins => :"#{self.name.underscore}_translations_#{I18n.locale}" } }
+          field  = "#{quoted_translation_table_name}.#{key}"
+          self.named_scope :"ascend_by_#{key}",  
+            lambda{ { 
+              :order => "#{field} ASC",  
+              :joins => "LEFT OUTER JOIN `#{translation_table_name}` ON (`#{translation_table_name}`.#{class_name.foreign_key} = `#{table_name}`.id AND `#{translation_table_name}`.locale = '#{I18n.locale.to_s}')"
+            } }
         end
       end
-
+      
       def translates?
         included_modules.include?(InstanceMethods)
       end
@@ -120,7 +122,7 @@ module Globalize
         end.map(&:name)
       end
 
-      def respond_to?(method)
+      def respond_to?(method, *args, &block)
         method.to_s =~ /^find_by_(\w+)$/ && translated_attribute_names.include?($1.to_sym) || super
       end
 

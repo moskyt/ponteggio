@@ -2,7 +2,7 @@ module Ponteggio
   module IndexHelper
   
     def index_table_for(model_class, record_set, index_column_set)
-      content_tag(:table, :class => 'index-table') do
+      content_tag(:table, :class => 'ponteggio-index', :cellspacing => 0) do
         content_tag(:colgroup) do
           index_column_set.map do |column|
             tag(:col, :width => (column[:width]))
@@ -12,7 +12,7 @@ module Ponteggio
         index_table_header(model_class, index_column_set) +
         content_tag(:tbody, :class => 'index-records') do
           record_set.map do |record|
-            content_tag(:tr, :class => "index-table-row-#{cycle('odd', 'even')}") do
+            content_tag(:tr, :class => "ponteggio-index-row-#{cycle('odd', 'even')}") do
               index_column_set.map do |column|
                 content_tag(:td) do
                   truncated_value_for(record, column)

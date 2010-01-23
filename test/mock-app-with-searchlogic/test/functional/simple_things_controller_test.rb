@@ -20,18 +20,18 @@ class SimpleThingsControllerTest < ActionController::TestCase
         assert_nil assigns(:items_per_page)
       end
       should "render the index table" do
-        assert_select "body > table.index-table"
+        assert_select "body > table.ponteggio-index"
       end
       context "the index table" do
         should "have a header" do
-          assert_select "body > table.index-table > thead"
-          assert_select "body > table.index-table > thead > tr"
-          assert_select "body > table.index-table > thead > tr > th:nth-of-type(1)", :html => '_title'
-          assert_select "body > table.index-table > thead > tr > th:nth-of-type(6)", :html => ''
+          assert_select "body > table.ponteggio-index > thead"
+          assert_select "body > table.ponteggio-index > thead > tr"
+          assert_select "body > table.ponteggio-index > thead > tr > th:nth-of-type(1)", :html => '_title'
+          assert_select "body > table.ponteggio-index > thead > tr > th:nth-of-type(6)", :html => ''
         end
         should "have 100 rows in body" do
-          assert_select "body > table.index-table > tbody.index-records"
-          assert_select "body > table.index-table > tbody.index-records > tr", :count => 100
+          assert_select "body > table.ponteggio-index > tbody.index-records"
+          assert_select "body > table.ponteggio-index > tbody.index-records > tr", :count => 100
         end
       end
       should "have new-link at the bottom" do
