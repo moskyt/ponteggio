@@ -1,3 +1,8 @@
+/*
+color scheme : 
+http://colorschemedesigner.com/#3P21ToT--w0w0
+*/
+
 table.ponteggio-index {
   width:100%;
 }
@@ -24,9 +29,10 @@ tr.ponteggio-index-row-even > td {
   background-color:#ccc;
 }
 
-td.pagination {
+td.ponteggio-pagination {
   text-align:center;
-  background-color: #1437ad;
+  background-color: #ffffff;
+  border:#061f70 1px solid;
   padding:9px;
 }
 
@@ -35,19 +41,19 @@ table.ponteggio-show td.label {
   padding-right: 2em;
 }
 
-div.ponteggio-show-links {
+div.ponteggio-links-block {
   margin-top: 2em;
 }
 
-span.ponteggio-show-links {
+span.ponteggio-links-block {
   background-color:#6e86d6;
   border:#061f70 1px solid;
   padding:0.5em;
 }
 
-span.ponteggio-show-links a {
+span.ponteggio-links-block a {
   color:white;
 }
-span.ponteggio-show-links a img {
+span.ponteggio-links-block a img {
   margin-bottom: -4px;
 }

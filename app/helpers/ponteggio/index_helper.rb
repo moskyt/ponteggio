@@ -29,12 +29,11 @@ module Ponteggio
           def @template.request
             controller.request
           end         
-          in_csv_block ||= false
-  				# render the pagination control
-          content_tag :tbody do
-            content_tag :tr do
-              content_tag(:td, :class => 'pagination', :colspan => (index_column_set.size + (in_csv_block ? 0 : 1))) do
-  							if @items_per_page
+					if @items_per_page
+    				# render the pagination control
+            content_tag :tbody do
+              content_tag :tr do
+                content_tag(:td, :class => 'ponteggio-pagination', :colspan => index_column_set.size + 1) do
   	              (will_paginate(
   									record_set, :container => false, 
   									:previous_label => t('ponteggio.pagination.previous'), 
@@ -43,27 +42,27 @@ module Ponteggio
   								t('ponteggio.pagination.items_per_page', :n => @items_per_page) + '; ' + 
   								content_tag(:span, link_to(t('ponteggio.pagination.no_pagination'), :search => @search_params, :do_not_paginate => 1)) + ']'
   	            end
-  					 	end + 
-  					 	if in_csv_block
-    						content_tag(:td, :class => 'csv_button_container') do
-    						end
-  						else
-  						  ''
-						  end
+  					 	end
             end
+          else
+            ''
           end
         end
       end
     end
     
     def index_item_links(record)
-      link_to(image_tag('ponteggio/zoom.png'), polymorphic_url(record)) +
-      link_to(image_tag('ponteggio/page_edit.png'), polymorphic_url(record, :action => :edit)) + 
+      link_to(image_tag('ponteggio/zoom.png'), polymorphic_url(record)) + " " +
+      link_to(image_tag('ponteggio/page_edit.png'), polymorphic_url(record, :action => :edit)) + " " +
       link_to(image_tag('ponteggio/cancel.png'), polymorphic_url(record), :method => :delete)
     end
     
     def index_links_box(model_class)
-      link_to(t('ponteggio.links.new'), polymorphic_url(model_class.new, :action => :new))
+      content_tag :div, :class => 'ponteggio-links-block' do
+        content_tag :span, :class => 'ponteggio-links-block' do
+          link_to(t('ponteggio.links.new'), polymorphic_url(model_class.new, :action => :new))
+        end
+      end
     end
 
     # header for the index table -- with sortable controls
