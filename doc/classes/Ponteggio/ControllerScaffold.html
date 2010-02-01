@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Ponteggio::ControllerScaffold</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Ponteggio::ControllerScaffold</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/ponteggio/controller_scaffold_rb.html">
+                lib/ponteggio/controller_scaffold.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000015">column</a>&nbsp;&nbsp;
+      <a href="#M000009">edit_column_set</a>&nbsp;&nbsp;
+      <a href="#M000010">get_edit_column_list</a>&nbsp;&nbsp;
+      <a href="#M000008">get_index_column_list</a>&nbsp;&nbsp;
+      <a href="#M000012">get_show_column_list</a>&nbsp;&nbsp;
+      <a href="#M000007">index_column_set</a>&nbsp;&nbsp;
+      <a href="#M000013">items_per_page</a>&nbsp;&nbsp;
+      <a href="#M000014">map_column_set</a>&nbsp;&nbsp;
+      <a href="#M000016">ponteggio</a>&nbsp;&nbsp;
+      <a href="#M000011">show_column_set</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="InternalActions.html">Ponteggio::InternalActions</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000015.html');return false;">
+          <span class="method-name">column</span><span class="method-args">(symbol, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Define a <a href="ControllerScaffold.html#M000015">column</a> with name
+<tt>symbol</tt> and some options. The <a
+href="ControllerScaffold.html#M000015">column</a> has to be defined only if
+you need to modify something; standard database columns or associations are
+maintained automatically.
+</p>
+<p>
+The options are:
+</p>
+<ul>
+<li>+:sortable =&gt; true+ &#8212; this <a
+href="ControllerScaffold.html#M000015">column</a> can be used for sorting
+(clickable header in index table)
+
+</li>
+<li>+:style =&gt; :dropdown+ / +:style =&gt; :checkbox+ &#8212; for
+multiple-select columns (has_many, has_and_belongs_to_many), use either
+javascript-flavored dropdown with add &amp; remove buttons, or a list of
+checkboxes
+
+</li>
+<li>+:list =&gt; :long+ &#8212; for multiple-object columns, show
+newline-separated list instead of comma-separated in show action (and
+<tt>value_for</tt>)
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000009.html');return false;">
+          <span class="method-name">edit_column_set</span><span class="method-args">(*symbols)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000010.html');return false;">
+          <span class="method-name">get_edit_column_list</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000008.html');return false;">
+          <span class="method-name">get_index_column_list</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000012.html');return false;">
+          <span class="method-name">get_show_column_list</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000007.html');return false;">
+          <span class="method-name">index_column_set</span><span class="method-args">(*symbols)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+six methods for maintaining the <a
+href="ControllerScaffold.html#M000015">column</a> lists
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000013.html');return false;">
+          <span class="method-name">items_per_page</span><span class="method-args">(n = 20)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+pagination
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000014.html');return false;">
+          <span class="method-name">map_column_set</span><span class="method-args">(model_class, column_list)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+extract the columns from the options heap, add guessed type and create an
+array of <a href="ControllerScaffold.html#M000015">column</a>-hashes
+according to the list
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000016.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000016.html');return false;">
+          <span class="method-name">ponteggio</span><span class="method-args">(model_class, *method_set)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Generate the basic scaffold. Set <tt>model_class</tt> as the linked model
+for this controller. The set <tt>model_set</tt> defines the list of actions
+which will be defined: you can use +:crud+ for defining the standard seven
+actions.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="ControllerScaffold.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('ControllerScaffold.src/M000011.html');return false;">
+          <span class="method-name">show_column_set</span><span class="method-args">(*symbols)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

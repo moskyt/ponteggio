@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Ponteggio::PonteggioFormBuilder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Ponteggio::PonteggioFormBuilder</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/ponteggio/ponteggio_form_builder_rb.html">
+                lib/ponteggio/ponteggio_form_builder.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActionView::Helpers::FormBuilder
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000045">edit_field</a>&nbsp;&nbsp;
+      <a href="#M000046">edit_for</a>&nbsp;&nbsp;
+      <a href="#M000044">habtm_select</a>&nbsp;&nbsp;
+      <a href="#M000043">multiple_select_checkbox</a>&nbsp;&nbsp;
+      <a href="#M000042">multiple_select_js</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="PonteggioFormBuilder.src/M000045.html" target="Code" class="method-signature"
+            onclick="popupCode('PonteggioFormBuilder.src/M000045.html');return false;">
+          <span class="method-name">edit_field</span><span class="method-args">(column, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="PonteggioFormBuilder.src/M000046.html" target="Code" class="method-signature"
+            onclick="popupCode('PonteggioFormBuilder.src/M000046.html');return false;">
+          <span class="method-name">edit_for</span><span class="method-args">(column, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="PonteggioFormBuilder.src/M000044.html" target="Code" class="method-signature"
+            onclick="popupCode('PonteggioFormBuilder.src/M000044.html');return false;">
+          <span class="method-name">habtm_select</span><span class="method-args">(association, scope = :all, style = :checkbox)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+habtm relation editor, allowing to filter possible selections with scope
+and allowing :checkbox or :dropdown look-n-feel
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="PonteggioFormBuilder.src/M000043.html" target="Code" class="method-signature"
+            onclick="popupCode('PonteggioFormBuilder.src/M000043.html');return false;">
+          <span class="method-name">multiple_select_checkbox</span><span class="method-args">(field_name, record_set, selected_set, dom_id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+control from selecting a subset of a &quot;record_set&quot; using a bunch
+of checkboxes dom_id identifies this selector uniquely base_name is the
+input name, to which [] will be appended
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="PonteggioFormBuilder.src/M000042.html" target="Code" class="method-signature"
+            onclick="popupCode('PonteggioFormBuilder.src/M000042.html');return false;">
+          <span class="method-name">multiple_select_js</span><span class="method-args">(field_name, record_set, selected_set, dom_id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+control from selecting a subset of a &quot;record_set&quot; using a
+dropdown and a list with &#8216;remove&#8217; buttons dom_id identifies
+this selector uniquely base_name is the input name, to which [] will be
+appended
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

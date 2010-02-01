@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   
   extend Ponteggio::ControllerScaffold
   extend Ponteggio::ControllerActionDefiners
+  include Ponteggio::ViewGenerators::DefaultViewGenerator
   
   before_filter :set_locale
   

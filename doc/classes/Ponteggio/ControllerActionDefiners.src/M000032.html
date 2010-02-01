@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>define_destroy (Ponteggio::ControllerActionDefiners)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/controller_action_definers.rb, line 44</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_destroy</span>
+      <span class="ruby-identifier">define_method</span> <span class="ruby-identifier">:destroy</span> <span class="ruby-keyword kw">do</span>                     
+        <span class="ruby-identifier">find_record</span>
+        <span class="ruby-ivar">@record</span>.<span class="ruby-identifier">destroy</span>
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:index</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

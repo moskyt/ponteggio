@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>multiple_select_checkbox (Ponteggio::PonteggioFormBuilder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/ponteggio_form_builder.rb, line 51</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multiple_select_checkbox</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">record_set</span>, <span class="ruby-identifier">selected_set</span>, <span class="ruby-identifier">dom_id</span>)
+      <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">dom_id</span>) <span class="ruby-keyword kw">do</span>           
+        <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">hidden_field_tag</span>(<span class="ruby-node">&quot;#{field_name}[]&quot;</span>, <span class="ruby-value str">&quot;0&quot;</span>) <span class="ruby-operator">+</span>
+                        <span class="ruby-comment cmt"># render checkboxes for all records</span>
+        <span class="ruby-identifier">record_set</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>, <span class="ruby-identifier">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'multiple_select_checkbox_containter'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{dom_id}_record_#{record.id}&quot;</span>) <span class="ruby-keyword kw">do</span>
+                                        <span class="ruby-comment cmt"># tick those which are already selected</span>
+            <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">check_box_tag</span>(<span class="ruby-node">&quot;#{field_name}[]&quot;</span>, <span class="ruby-identifier">record</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">selected_set</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">record</span>)) <span class="ruby-operator">+</span>
+                                        <span class="ruby-comment cmt"># print the record name</span>
+            <span class="ruby-identifier">record</span>.<span class="ruby-identifier">to_s</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-operator">*</span> <span class="ruby-value str">&quot;\n&quot;</span> 
+      <span class="ruby-keyword kw">end</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>, <span class="ruby-value str">''</span>, <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'clear:both'</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

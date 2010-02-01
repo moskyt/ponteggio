@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>edit_field (Ponteggio::PonteggioFormBuilder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/ponteggio_form_builder.rb, line 83</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit_field</span>(<span class="ruby-identifier">column</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-comment cmt"># get the value or default</span>
+      <span class="ruby-identifier">value</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>]) <span class="ruby-operator">||</span> <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:default</span>]
+      <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{column[:key]}=&quot;</span>, <span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:kind</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:date</span>  
+        <span class="ruby-identifier">datetime_select</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], {<span class="ruby-identifier">:discard_hour</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>}, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:time</span>
+        <span class="ruby-identifier">datetime_select</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], {<span class="ruby-identifier">:discard_year</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:discard_month</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:discard_day</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>}, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:datetime</span>
+        <span class="ruby-identifier">datetime_select</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:text</span>, <span class="ruby-identifier">:textile</span>, <span class="ruby-identifier">:wysiwyg</span>
+        <span class="ruby-identifier">text_area</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:enum</span>
+        <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> {} 
+        <span class="ruby-identifier">select_opts</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">enum_options_for</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>])
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:include_blank</span>)
+          <span class="ruby-identifier">select_opts</span> = [[<span class="ruby-value str">'---'</span>, <span class="ruby-keyword kw">nil</span>]] <span class="ruby-operator">+</span> <span class="ruby-identifier">select_opts</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">select</span> <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">options_for_select</span>(<span class="ruby-identifier">select_opts</span>, <span class="ruby-identifier">value</span>), <span class="ruby-identifier">opts</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:boolean</span>
+        <span class="ruby-identifier">check_box</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:objects</span>
+        <span class="ruby-identifier">habtm_select</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:scope</span>], <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:style</span>])
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:object</span>
+        <span class="ruby-identifier">collection_select</span>(
+          <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:reflection</span>].<span class="ruby-identifier">primary_key_name</span>, 
+          <span class="ruby-identifier">column</span>[<span class="ruby-identifier">:reflection</span>].<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:scope</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">:all</span>),
+          <span class="ruby-identifier">:id</span>, <span class="ruby-identifier">:to_s</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">column</span>[<span class="ruby-identifier">:key</span>], <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

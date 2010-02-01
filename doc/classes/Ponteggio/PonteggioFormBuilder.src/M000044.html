@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>habtm_select (Ponteggio::PonteggioFormBuilder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/ponteggio_form_builder.rb, line 68</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">habtm_select</span>(<span class="ruby-identifier">association</span>, <span class="ruby-identifier">scope</span> = <span class="ruby-identifier">:all</span>, <span class="ruby-identifier">style</span> = <span class="ruby-identifier">:checkbox</span>)
+                <span class="ruby-identifier">object_model</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">class</span>
+                <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">object_model</span>.<span class="ruby-identifier">reflect_on_association</span>(<span class="ruby-identifier">association</span>)
+      <span class="ruby-identifier">record_set</span> = <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">scope</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">:all</span>)
+      <span class="ruby-identifier">selected_set</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">association</span>) <span class="ruby-operator">||</span> []
+      <span class="ruby-identifier">dom_id</span> = <span class="ruby-node">&quot;multiple_select_#{object_model.name}_#{association}_#{object &amp;&amp; object.id}&quot;</span>
+      <span class="ruby-identifier">field_name</span> = <span class="ruby-node">&quot;#{object_model.name.underscore}[#{association.to_s.singularize}_ids]&quot;</span>
+                <span class="ruby-keyword kw">case</span> (<span class="ruby-identifier">style</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">:checkbox</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:checkbox</span> 
+                        <span class="ruby-identifier">multiple_select_checkbox</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">record_set</span>, <span class="ruby-identifier">selected_set</span>, <span class="ruby-identifier">dom_id</span>)
+                <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:dropdown</span>
+                        <span class="ruby-identifier">multiple_select_js</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">record_set</span>, <span class="ruby-identifier">selected_set</span>, <span class="ruby-identifier">dom_id</span>)
+                <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

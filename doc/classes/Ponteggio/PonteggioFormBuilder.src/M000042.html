@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>multiple_select_js (Ponteggio::PonteggioFormBuilder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/ponteggio_form_builder.rb, line 10</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multiple_select_js</span>(<span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">record_set</span>, <span class="ruby-identifier">selected_set</span>, <span class="ruby-identifier">dom_id</span>)
+      <span class="ruby-comment cmt"># container for the selected objects</span>
+                <span class="ruby-comment cmt"># with the pre-selected set</span>
+      <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">dom_id</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'_container'</span>) <span class="ruby-keyword kw">do</span>
+                        <span class="ruby-identifier">selected_set</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">record</span><span class="ruby-operator">|</span>
+                          <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">content_tag</span> <span class="ruby-identifier">:span</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{dom_id}_record_#{record.id}&quot;</span> <span class="ruby-keyword kw">do</span>
+                <span class="ruby-node">%{&lt;input type=&quot;hidden&quot; name=&quot;#{field_name}[]&quot; value=&quot;#{record.id}&quot;&gt;
+                  #{@template.link_to_function 'remove', &quot;Element.remove('#{dom_id}_record_#{record.id}');#{dom_id}_selected[#{record.id}] = false;&quot;}
+                  #{record.to_s}&lt;br /&gt;}</span>
+                <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-keyword kw">end</span> <span class="ruby-operator">*</span> <span class="ruby-value str">''</span>
+                <span class="ruby-keyword kw">end</span> <span class="ruby-operator">+</span>
+      <span class="ruby-comment cmt"># the dropdown for selecting objs</span>
+      <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">select_tag</span>(<span class="ruby-value str">''</span>, <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">options_for_select</span>(<span class="ruby-identifier">record_set</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">r</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">r</span>.<span class="ruby-identifier">id</span>]}), <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">dom_id</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'_select'</span>) <span class="ruby-operator">+</span>
+      <span class="ruby-comment cmt"># JS for : mapping ids to captions; tracing what was already selected</span>
+      <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">javascript_tag</span>( <span class="ruby-node">%Q{
+        var #{dom_id}_map = {};
+        var #{dom_id}_selected = {};
+        #{record_set.map{|x| &quot;#{dom_id}_map[#{x.id}] = '#{x.to_s}'; #{dom_id}_selected[#{x.id}] = #{selected_set.include?(x).to_s};&quot;}}
+      }</span>) <span class="ruby-operator">+</span>
+      <span class="ruby-comment cmt"># the ADD button</span>
+      <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">link_to_function</span>(<span class="ruby-value str">'add'</span>, <span class="ruby-node">%Q{
+        // selected value
+        var id = $('#{dom_id}_select').value;
+        // js for the REMOVE button
+        var js = 'Element.remove(\\'#{dom_id}_record_'+id+'\\');#{dom_id}_selected[id] = false;';
+        // html for the record row
+        var html = '&lt;span id=&quot;#{dom_id}_record_'+id+'&quot;&gt;' + 
+                                                                 '&lt;a href=&quot;#&quot; onclick=&quot;'+js+'&quot;&gt;remove&lt;/a&gt;' +
+                                                                 #{dom_id}_map[id] +
+                   '&lt;input type=&quot;hidden&quot; name=&quot;#{field_name}[]&quot; value=&quot;' + id + '&quot;&gt;&lt;br /&gt;&lt;/span&gt;';
+        // paste only if it was not already selected
+        if (!#{dom_id}_selected[id]) Element.insert('#{dom_id}_container', {bottom : html});
+        #{dom_id}_selected[id] = true;
+      }</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>ponteggio (Ponteggio::ControllerScaffold)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/controller_scaffold.rb, line 94</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ponteggio</span>(<span class="ruby-identifier">model_class</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">method_set</span>) 
+      
+      <span class="ruby-comment cmt"># prepare the list of all columns, which is used by default for all the *_column_set, if they</span>
+      <span class="ruby-comment cmt"># are not supplied by the user        </span>
+      <span class="ruby-ivar">@all_columns</span> = []
+      <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">column_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+        <span class="ruby-ivar">@all_columns</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">reflect_on_all_associations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">reflection</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:belongs_to</span>
+          <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">class_name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/::Translation/</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Ponteggio</span><span class="ruby-operator">::</span><span class="ruby-constant">USE_GLOBALIZE2</span>
+            <span class="ruby-ivar">@all_columns</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-comment cmt"># do not display the id and the timestamps by default</span>
+      <span class="ruby-comment cmt"># FIXME : should use some_primary_key instead of id</span>
+      <span class="ruby-ivar">@all_columns</span> <span class="ruby-operator">-=</span> [<span class="ruby-identifier">:id</span>, <span class="ruby-identifier">:created_at</span>, <span class="ruby-identifier">:updated_at</span>]
+      
+      <span class="ruby-comment cmt"># define a method providing the model class</span>
+      <span class="ruby-identifier">define_method</span> <span class="ruby-identifier">:ponteggio_model_class</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">model_class</span>
+      <span class="ruby-keyword kw">end</span>
+              
+      <span class="ruby-identifier">include</span> <span class="ruby-constant">Ponteggio</span><span class="ruby-operator">::</span><span class="ruby-constant">InternalActions</span>
+
+      <span class="ruby-node">%w{index show destroy new create edit update}</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;define_#{method}&quot;</span><span class="ruby-node">&quot;define_#{method}&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">method_set</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_sym</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">method_set</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">:crud</span>)
+      <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>map_column_set (Ponteggio::ControllerScaffold)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/controller_scaffold.rb, line 38</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">map_column_set</span>(<span class="ruby-identifier">model_class</span>, <span class="ruby-identifier">column_list</span>)
+      <span class="ruby-identifier">column_list</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">col</span> = {<span class="ruby-identifier">:key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">key</span>}.<span class="ruby-identifier">merge</span>((<span class="ruby-ivar">@columns</span> <span class="ruby-operator">||</span> {})[<span class="ruby-identifier">key</span>] <span class="ruby-operator">||</span> {})
+        <span class="ruby-comment cmt"># get the reflection</span>
+        <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">reflect_on_association</span>(<span class="ruby-identifier">col</span>[<span class="ruby-identifier">:key</span>])
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">reflection</span>
+          <span class="ruby-comment cmt"># database column</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">db_column</span> = <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">columns_hash</span>[<span class="ruby-identifier">col</span>[<span class="ruby-identifier">:key</span>].<span class="ruby-identifier">to_s</span>]
+          <span class="ruby-comment cmt"># derived kind</span>
+            <span class="ruby-identifier">column_kind</span> = <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:kind</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">db_column</span>.<span class="ruby-identifier">sql_type</span>
+            <span class="ruby-identifier">column_kind</span> = <span class="ruby-identifier">column_kind</span>.<span class="ruby-identifier">to_sym</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">column_kind</span>
+            <span class="ruby-comment cmt"># default_value</span>
+            <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:default</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">db_column</span>.<span class="ruby-identifier">extract_default</span>(<span class="ruby-identifier">db_column</span>.<span class="ruby-identifier">default</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-comment cmt"># this is not a true column, is it?</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Ponteggio</span><span class="ruby-operator">::</span><span class="ruby-constant">USE_GLOBALIZE2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">translates?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">translated_attribute_names</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:key</span>]
+              <span class="ruby-comment cmt"># this is a translated column</span>
+              <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:kind</span>] = <span class="ruby-identifier">:translated</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># get a human name</span>
+        <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:name</span>] = <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">human_attribute_name</span>(<span class="ruby-identifier">col</span>[<span class="ruby-identifier">:key</span>])
+        <span class="ruby-comment cmt"># overwrite the database-column-type in case of an association</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reflection</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">col</span>[<span class="ruby-identifier">:kind</span>]
+          <span class="ruby-identifier">column_kind</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:belongs_to</span>, <span class="ruby-identifier">:has_one</span>
+            <span class="ruby-identifier">:object</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_many</span>, <span class="ruby-identifier">:has_and_belongs_to_many</span>
+            <span class="ruby-identifier">:objects</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># enumeration</span>
+        <span class="ruby-identifier">column_kind</span> = <span class="ruby-identifier">:enum</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">model_class</span>.<span class="ruby-identifier">is_enumeration?</span>(<span class="ruby-identifier">col</span>[<span class="ruby-identifier">:key</span>])
+        <span class="ruby-comment cmt"># write the final kind</span>
+        <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:kind</span>] = <span class="ruby-identifier">column_kind</span>
+        <span class="ruby-identifier">col</span>[<span class="ruby-identifier">:reflection</span>] = <span class="ruby-identifier">reflection</span>
+        <span class="ruby-identifier">col</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

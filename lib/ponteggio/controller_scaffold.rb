@@ -76,13 +76,21 @@ module Ponteggio
       end
     end
   
-    # define a column
+    # Define a column with name +symbol+ and some options. The column has to be defined only if you need to modify something;
+    # standard database columns or associations are maintained automatically.
+    #
+    # The options are:
+    # * +:sortable => true+ -- this column can be used for sorting (clickable header in index table)
+    # * +:style => :dropdown+ / +:style => :checkbox+ -- for multiple-select columns (has_many, has_and_belongs_to_many), use either javascript-flavored dropdown with add & remove buttons, or a list of checkboxes
+    # * +:list => :long+ -- for multiple-object columns, show newline-separated list instead of comma-separated in show action (and +value_for+)
     def column(symbol, options)
       @columns ||= {}
       @columns[symbol] = options
     end
                  
-  	# generator for scaffolding; used for all methods and for :create/:update on models without single table inheritance
+  	# Generate the basic scaffold. Set +model_class+ as the linked model for this controller. The set 
+  	# +model_set+ defines the list of actions which will be defined: you can use +:crud+ for defining
+  	# the standard seven actions.
     def ponteggio(model_class, *method_set) 
       
       # prepare the list of all columns, which is used by default for all the *_column_set, if they
@@ -111,7 +119,7 @@ module Ponteggio
       include Ponteggio::InternalActions
 
       %w{index show destroy new create edit update}.each do |method|
-        send(:"define_#{method}") if method_set.include?(method.to_sym) or method_set.include?(:crud)
+        send(:"define_#{method}", Ponteggio::ViewGenerators::DefaultViewGenerator) if method_set.include?(method.to_sym) or method_set.include?(:crud)
       end
   
     end

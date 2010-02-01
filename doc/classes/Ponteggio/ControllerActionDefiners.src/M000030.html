@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>define_index (Ponteggio::ControllerActionDefiners)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/ponteggio/controller_action_definers.rb, line 4</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_index</span>
+      <span class="ruby-identifier">define_method</span> <span class="ruby-identifier">:index</span> <span class="ruby-keyword kw">do</span>                     
+
+        <span class="ruby-comment cmt"># @default_order = @default_order.to_s.gsub(&quot;translations__&quot;, &quot;translations_#{I18n.locale}_&quot;)</span>
+                                <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:search</span>] <span class="ruby-operator">||=</span> {}
+        <span class="ruby-comment cmt"># params[:search][:order] ||= @default_order</span>
+                                <span class="ruby-ivar">@search_params</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:search</span>].<span class="ruby-identifier">dup</span>
+                                <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Ponteggio</span><span class="ruby-operator">::</span><span class="ruby-constant">USE_SEARCHLOGIC</span>
+                      <span class="ruby-ivar">@search</span> = <span class="ruby-identifier">ponteggio_model_class</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:search</span>])
+              <span class="ruby-keyword kw">else</span>
+          <span class="ruby-ivar">@search</span> = <span class="ruby-identifier">ponteggio_model_class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>)
+        <span class="ruby-keyword kw">end</span>
+
+                    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">get_items_per_page</span>
+                <span class="ruby-ivar">@records</span> = <span class="ruby-ivar">@search</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_items_per_page</span>)
+                <span class="ruby-ivar">@items_per_page</span> = <span class="ruby-identifier">get_items_per_page</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-ivar">@records</span> =  <span class="ruby-ivar">@search</span>
+              <span class="ruby-keyword kw">end</span>                                                                
+
+        <span class="ruby-identifier">instance_variable_set</span> <span class="ruby-node">&quot;@#{ponteggio_model_class.base_class.name.underscore.pluralize}&quot;</span><span class="ruby-node">&quot;@#{ponteggio_model_class.base_class.name.underscore.pluralize}&quot;</span>, <span class="ruby-ivar">@records</span>
+
+                    <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">iv</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">iv</span>, <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">iv</span>))}
+
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">index_page_for</span>(
+          <span class="ruby-identifier">ponteggio_model_class</span>,
+          <span class="ruby-ivar">@records</span>,
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">map_column_set</span>(<span class="ruby-identifier">ponteggio_model_class</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">get_index_column_list</span>)), <span class="ruby-identifier">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

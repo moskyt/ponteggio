@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Ponteggio</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Ponteggio</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/helpers/ponteggio/edit_helper_rb.html">
+                app/helpers/ponteggio/edit_helper.rb
+                </a>
+        <br />
+                <a href="../files/app/helpers/ponteggio/form_helper_rb.html">
+                app/helpers/ponteggio/form_helper.rb
+                </a>
+        <br />
+                <a href="../files/app/helpers/ponteggio/index_helper_rb.html">
+                app/helpers/ponteggio/index_helper.rb
+                </a>
+        <br />
+                <a href="../files/app/helpers/ponteggio/page_helper_rb.html">
+                app/helpers/ponteggio/page_helper.rb
+                </a>
+        <br />
+                <a href="../files/app/helpers/ponteggio/show_helper_rb.html">
+                app/helpers/ponteggio/show_helper.rb
+                </a>
+        <br />
+                <a href="../files/app/helpers/ponteggio/value_helper_rb.html">
+                app/helpers/ponteggio/value_helper.rb
+                </a>
+        <br />
+                <a href="../files/lib/ponteggio/controller_action_definers_rb.html">
+                lib/ponteggio/controller_action_definers.rb
+                </a>
+        <br />
+                <a href="../files/lib/ponteggio/controller_scaffold_rb.html">
+                lib/ponteggio/controller_scaffold.rb
+                </a>
+        <br />
+                <a href="../files/lib/ponteggio/enumerated_column_rb.html">
+                lib/ponteggio/enumerated_column.rb
+                </a>
+        <br />
+                <a href="../files/lib/ponteggio/internal_actions_rb.html">
+                lib/ponteggio/internal_actions.rb
+                </a>
+        <br />
+                <a href="../files/lib/ponteggio/ponteggio_form_builder_rb.html">
+                lib/ponteggio/ponteggio_form_builder.rb
+                </a>
+        <br />
+                <a href="../files/lib/ponteggio_rb.html">
+                lib/ponteggio.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Ponteggio/ControllerActionDefiners.html" class="link">Ponteggio::ControllerActionDefiners</a><br />
+Module <a href="Ponteggio/ControllerScaffold.html" class="link">Ponteggio::ControllerScaffold</a><br />
+Module <a href="Ponteggio/EditHelper.html" class="link">Ponteggio::EditHelper</a><br />
+Module <a href="Ponteggio/EnumeratedColumn.html" class="link">Ponteggio::EnumeratedColumn</a><br />
+Module <a href="Ponteggio/FormHelper.html" class="link">Ponteggio::FormHelper</a><br />
+Module <a href="Ponteggio/IndexHelper.html" class="link">Ponteggio::IndexHelper</a><br />
+Module <a href="Ponteggio/InternalActions.html" class="link">Ponteggio::InternalActions</a><br />
+Module <a href="Ponteggio/PageHelper.html" class="link">Ponteggio::PageHelper</a><br />
+Module <a href="Ponteggio/ShowHelper.html" class="link">Ponteggio::ShowHelper</a><br />
+Module <a href="Ponteggio/ValueHelper.html" class="link">Ponteggio::ValueHelper</a><br />
+Class <a href="Ponteggio/PonteggioFormBuilder.html" class="link">Ponteggio::PonteggioFormBuilder</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">USE_SEARCHLOGIC</td>
+          <td>=</td>
+          <td class="context-item-value">true</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">USE_GLOBALIZE2</td>
+          <td>=</td>
+          <td class="context-item-value">true</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
