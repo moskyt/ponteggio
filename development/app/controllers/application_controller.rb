@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   layout 'default'
   
   extend Ponteggio::ControllerScaffold
+  extend Ponteggio::ControllerActionDefiners
   
   before_filter :set_locale
   

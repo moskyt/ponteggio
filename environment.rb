@@ -1,4 +1,5 @@
 ActionController::Base.send(:extend, Ponteggio::ControllerScaffold)
+ActionController::Base.send(:extend, Ponteggio::ControllerActionDefiners)
 ActiveRecord::Base.send(:include, Ponteggio::EnumeratedColumn)
 ActionView::Base.send(:include, Ponteggio::PageHelper)
 ActionView::Base.send(:include, Ponteggio::IndexHelper)

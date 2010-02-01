@@ -84,7 +84,9 @@ module Ponteggio
                  
   	# generator for scaffolding; used for all methods and for :create/:update on models without single table inheritance
     def ponteggio(model_class, *method_set) 
-              
+      
+      # prepare the list of all columns, which is used by default for all the *_column_set, if they
+      # are not supplied by the user        
       @all_columns = []
       model_class.column_names.each do |key|
         @all_columns << key.to_sym
@@ -96,112 +98,20 @@ module Ponteggio
           end
         end
       end
+      
       # do not display the id and the timestamps by default
       # FIXME : should use some_primary_key instead of id
       @all_columns -= [:id, :created_at, :updated_at]
-              
-      #pagination
-      define_method :get_items_per_page do
-        self.class.instance_variable_get(:"@items_per_page")
+      
+      # define a method providing the model class
+      define_method :ponteggio_model_class do
+        model_class
       end
               
-      # common logic for Object.find(params[:id])
-      # sets both @record and @{object}  
-      define_method :find_record do
-        @record = model_class.find(params[:id])
-        instance_variable_set(:"@#{model_class.base_class.name.underscore}", @record)
-      end    
-      self.send(:private, :find_record)
+      include Ponteggio::InternalActions
 
-      if method_set.include?(:index) or method_set.include?(:crud)
-        define_method :index do                     
-
-          # @default_order = @default_order.to_s.gsub("translations__", "translations_#{I18n.locale}_")
-  				params[:search] ||= {}
-          # params[:search][:order] ||= @default_order
-  				@search_params = params[:search].dup
-  				if Ponteggio::USE_SEARCHLOGIC
-  		      @search = model_class.search(params[:search])
-		      else
-            @search = model_class.find(:all)
-          end
-
-  		    if get_items_per_page
-		        @records = @search.paginate(:page => params[:page], :per_page => get_items_per_page)
-		        @items_per_page = get_items_per_page
-		      else
-		        @records =  @search
-		      end                                                                
-
-          instance_variable_set :"@#{model_class.base_class.name.underscore.pluralize}", @records
-
-  		    instance_variables.each {|iv| @template.instance_variable_set(iv, instance_variable_get(iv))}
-
-          render :text => @template.index_page_for(
-            model_class,
-            @records,
-            self.class.map_column_set(model_class, self.class.get_index_column_list)), :layout => true
-        end
-      end  
-
-      if method_set.include?(:show) or method_set.include?(:crud)
-        define_method :show do
-          find_record
-          render :text => @template.show_page_for(
-            @record,
-            self.class.map_column_set(model_class, self.class.get_show_column_list)), :layout => true
-        end
-      end
-       
-      if method_set.include?(:destroy) or method_set.include?(:crud)
-        define_method :destroy do                     
-          find_record
-          @record.destroy
-          redirect_to :action => :index
-        end
-      end
-    
-      if method_set.include?(:new) or method_set.include?(:crud)
-        define_method :new do                     
-          instance_variable_set(:"@#{model_class.base_class.name.underscore}", model_class.new)
-          render :text => @template.new_page_for(
-            model_class,
-            instance_variable_get(:"@#{model_class.base_class.name.underscore}"),
-            self.class.map_column_set(model_class, self.class.get_edit_column_list)), :layout => true
-        end
-      end
-    
-      if method_set.include?(:create) or method_set.include?(:crud)
-        define_method :create do        
-          cname = model_class.base_class.name.underscore             
-          record = model_class.new(params[cname])
-          if record.save
-            redirect_to :action => :index
-          else
-            render :action => :new
-          end
-        end
-      end
-
-      if method_set.include?(:edit) or method_set.include?(:crud)
-        define_method :edit do
-          find_record
-          render :text => @template.edit_page_for(
-            @record,
-            self.class.map_column_set(model_class, self.class.get_edit_column_list)), :layout => true
-        end
-      end
-       
-      if method_set.include?(:update) or method_set.include?(:crud)
-        define_method :update do        
-          find_record
-          @record.attributes = params[model_class.base_class.name.underscore]
-          if @record.save
-            redirect_to :action => :index
-          else
-            render :action => :edit
-          end
-        end
+      %w{index show destroy new create edit update}.each do |method|
+        send(:"define_#{method}") if method_set.include?(method.to_sym) or method_set.include?(:crud)
       end
   
     end
