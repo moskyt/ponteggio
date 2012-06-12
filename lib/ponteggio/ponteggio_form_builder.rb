@@ -1,8 +1,6 @@
 module Ponteggio
   class PonteggioFormBuilder < ActionView::Helpers::FormBuilder
 
-
-
   	# control from selecting a subset of a "record_set"
   	# using a dropdown and a list with 'remove' buttons
   	# dom_id identifies this selector uniquely

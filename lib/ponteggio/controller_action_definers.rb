@@ -30,7 +30,7 @@ module Ponteggio
     def define_show(view_generator)
       define_method :show do
         find_record
-        view_generator.render_show
+        render_show
       end
     end
      
@@ -45,7 +45,7 @@ module Ponteggio
     def define_new(view_generator)
       define_method :new do                     
         instance_variable_set(:"@#{ponteggio_model_class.base_class.name.underscore}", ponteggio_model_class.new)
-        view_generator.render_new
+        render_new
       end
     end
   
@@ -56,7 +56,7 @@ module Ponteggio
         if record.save
           redirect_to :action => :index
         else
-          view_generator.render_new
+          render_new
         end
       end
     end
@@ -64,7 +64,7 @@ module Ponteggio
     def define_edit(view_generator)
       define_method :edit do
         find_record
-        view_generator.render_edit
+        render_edit
       end
     end
      
@@ -75,7 +75,7 @@ module Ponteggio
         if @record.save
           redirect_to :action => :index
         else
-          view_generator.render_edit
+          render_edit
         end
       end
     end

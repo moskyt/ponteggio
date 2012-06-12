@@ -1,0 +1,1 @@
+../../../../app/helpers/ponteggio/in_place_helper.rb
